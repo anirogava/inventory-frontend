@@ -1,0 +1,45 @@
+<form action="/login" method="post" (ngSubmit)="login(form)" #form="ngForm">
+  <div class="container">
+    <label for="exampleInputPassword1" class="title">შესვლა</label>
+    <div class="form-group">
+      <input
+        type="email"
+        class="form-control"
+        ngModel
+        name="email"
+        required
+        id="floatingInput"
+        placeholder="name@example.com"
+      />
+    </div>
+    <div class="form-group">
+      <input
+        type="password"
+        name="password"
+        class="form-control"
+        id="exampleInputPassword1"
+        placeholder="პაროლი"
+        ngModel
+        required
+      />
+      <a href="/sign-up" class="form-text text-muted">არ გაქვთ ანგარიში ?</a>
+    </div>
+    <button type="submit" class="btn btn-primary">შესვლა</button>
+  </div>
+  <ng-container *ngIf="form.submitted && form.invalid">
+    <div
+      class="alert alert-danger mt-3 mb-2"
+      role="alert"
+      *ngIf="form.controls['email']?.errors?.['required']"
+    >
+      მეილი სავალდებულოა
+    </div>
+    <div
+      class="alert alert-danger mt-1"
+      role="alert"
+      *ngIf="form.controls['password']?.errors?.['required']"
+    >
+      პაროლი სავალდებულოა
+    </div>
+  </ng-container>
+</form>

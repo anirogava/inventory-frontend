@@ -1,0 +1,44 @@
+<main class="body">
+  <button type="button" class="btn btn-primary button1" [routerLink]="['/add']">
+    დამატება
+  </button>
+  <div></div>
+  <table class="table">
+    <thead class="thead-light">
+      <tr>
+        <th scope="col">ნივთის სახელი</th>
+        <th scope="col">ნივთის ადგილმდებარეობა</th>
+        <th scope="col">ფასი (ლარებში)</th>
+        <th scope="col">ოპერაციები</th>
+      </tr>
+    </thead>
+    <tbody *ngFor="let inventory of inventoryList">
+      <ng-container>
+        <tr>
+          <th>{{ inventory.name }}</th>
+          <td>{{ inventory.address }}</td>
+          <td>{{ inventory.price }}</td>
+          <td>
+            <button
+              type="button"
+              class="btn btn-danger"
+              (click)="deleteInventory()"
+            >
+              წაშლა
+            </button>
+          </td>
+        </tr>
+      </ng-container>
+    </tbody>
+  </table>
+  <ng-container>
+    <div class="">
+      <div class="card-body" *ngIf="!inventoryList.length">
+        {{ emptySting }}
+      </div>
+    </div>
+  </ng-container>
+  <button type="button" class="btn btn-primary button2" [routerLink]="['/add']">
+    დამატება
+  </button>
+</main>

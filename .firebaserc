@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "inventory-management-803e9": {
+      "hosting": {
+        "Inventory-Management": [
+          "inventory-management-803e9"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "inventory-management-803e9"
+  }
+}

@@ -1,0 +1,76 @@
+<main class="body">
+  <div>
+    <form class="form" [formGroup]="form">
+      <h2 class="title">დაამატეთ ნივთი</h2>
+      <div class="col-auto">
+        <label for="status" class="col-sm-2 col-form-label label"
+          >ადგილმდებარეობა:</label
+        >
+        <select
+          name="form-select"
+          class="form-select"
+          formControlName="address"
+        >
+          <option [value]="address.Main">მთავარი ოფისი</option>
+          <option [value]="address.Gallery">კავეა გალერია</option>
+          <option [value]="address.Mall">კავეა თბილისი მოლი</option>
+          <option [value]="address.EastPoint">კავეა ისთ ფოინთი</option>
+          <option [value]="address.CityMall">კავეა სითი მოლი</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="status" class="col-sm-2 col-form-label label"
+          >ნივთის დასახელება:</label
+        >
+        <input
+          class="form-control"
+          type="text"
+          placeholder=""
+          formControlName="name"
+        />
+      </div>
+      <label for="status" class="col-sm-2 col-form-label label"
+        >ფასი(ლარებში):</label
+      >
+      <div>
+        <input
+          type="number"
+          formControlName="price"
+          id="number"
+          [formGroup]="form"
+          novalidate
+        />
+      </div>
+      <button
+        type="submit"
+        class="btn btn-primary button1"
+        (click)="submit(form.value)"
+      >
+        დამატება
+      </button>
+      <ng-container *ngIf="submitted && form.invalid">
+        <div
+          class="alert alert-danger mt-2"
+          role="alert"
+          *ngIf="form.controls['name']?.errors?.['required']"
+        >
+          ველის შევსება სავალდებულოა
+        </div>
+        <div
+          class="alert alert-danger mt-2"
+          role="alert"
+          *ngIf="form.controls['number']?.errors?.['required']"
+        >
+          ფასის შეყვანა სავალდებულოა
+        </div>
+        <div
+          class="alert alert-danger mt-2"
+          role="alert"
+          *ngIf="form.controls['Adress']?.errors?.['required']"
+        >
+          გთხოვთ აირჩიოთ ადგილმდებარეობა
+        </div>
+      </ng-container>
+    </form>
+  </div>
+</main>
