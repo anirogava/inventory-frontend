@@ -24,9 +24,11 @@ export class SignInComponent implements OnInit {
     if (form.invalid) {
       return;
     }
-    from(this.authService.signIn(form.value)).subscribe(() => {
-      this.router.navigate(['main']);
-      this.authService.validate(this.email, this.password);
+    from(this.authService.signIn(form.value)).subscribe((res) => {
+      this.router.navigate(['list']);
+      // .then(() => {
+      // window.location.reload();
+      // });
     });
   }
 

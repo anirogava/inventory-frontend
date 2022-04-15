@@ -6,6 +6,8 @@ import { AuthService } from 'src/app/auth/service/auth.service';
 export interface SignUpForm {
   email: string;
   password: string;
+  firstName: string;
+  lastName: string;
 }
 
 @Component({
@@ -20,7 +22,7 @@ export class SignUpComponent implements OnInit {
       return;
     }
     from(this.authService.register(form.value)).subscribe(() => {
-      this.router.navigate(['main']);
+      this.router.navigate(['list']);
     });
   }
 

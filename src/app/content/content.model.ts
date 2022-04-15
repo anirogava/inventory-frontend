@@ -7,14 +7,16 @@ export enum Address {
   EastPoint = 'კავეა ისთ ფოინთი',
   CityMall = 'კავეა სითი მოლი',
 }
-export interface inventory {
-  address: string;
-  name: string;
-  price: number;
-}
-export interface inventoryResult {
+
+export interface Inventory {
   id: number;
   address: string;
   name: string;
   price: number;
+  userId: string;
+}
+
+export interface InventoryResult {
+  count: number;
+  items: Inventory[];
 }

@@ -5,7 +5,7 @@ import { AppComponent } from './app.component';
 import { ContentModule } from './content/content.module';
 import { ShellModule } from './shell/shell.module';
 import { HttpClientModule } from '@angular/common/http';
-import { storeService } from './content/store.service';
+import { storeService } from './content/services/store.service';
 import { AuthService, initializeAppFactory } from './auth/service/auth.service';
 
 @NgModule({

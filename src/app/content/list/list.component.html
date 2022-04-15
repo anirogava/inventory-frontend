@@ -2,7 +2,21 @@
   <button type="button" class="btn btn-primary button1" [routerLink]="['/add']">
     დამატება
   </button>
-  <div></div>
+  <button
+    type="button"
+    class="btn btn-primary button3"
+    [routerLink]="['/users-list']"
+  >
+    თქვენი სია
+  </button>
+  <div class="input-group mb-3">
+    <input
+      type="text"
+      class="form-control"
+      placeholder="ძებნა მისამართით"
+      [(ngModel)]="search"
+    />
+  </div>
   <table class="table">
     <thead class="thead-light">
       <tr>
@@ -12,7 +26,7 @@
         <th scope="col">ოპერაციები</th>
       </tr>
     </thead>
-    <tbody *ngFor="let inventory of inventoryList">
+    <tbody *ngFor="let inventory of inventoryList | filter: search">
       <ng-container>
         <tr>
           <th>{{ inventory.name }}</th>
@@ -22,7 +36,7 @@
             <button
               type="button"
               class="btn btn-danger"
-              (click)="deleteInventory()"
+              (click)="deleteInventory(inventory)"
             >
               წაშლა
             </button>
@@ -41,4 +55,20 @@
   <button type="button" class="btn btn-primary button2" [routerLink]="['/add']">
     დამატება
   </button>
+  <nav aria-label="Page navigation example">
+    <ul class="pagination">
+      <li class="page-item" [class.active]="n+1 == pagination.page" *ngFor="let i of counter(pagination.pages); index as n">
+        <a
+          class="page-link"
+         (click)="changePage(n+1)"
+          >{{n+1}}</a
+        >
+      </li>
+    </ul>
+  </nav>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
 </main>

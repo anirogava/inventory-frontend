@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
-import { Address, inventory, inventoryResult } from '../content.model';
+import { AuthService } from 'src/app/auth/service/auth.service';
+import { Address, Inventory, InventoryResult } from '../content.model';
 import { CustomValidator } from '../custom.validator';
-import { storeService } from '../store.service';
+import { storeService } from '../services/store.service';
 
 @Component({
   selector: 'app-add',
@@ -12,11 +13,15 @@ import { storeService } from '../store.service';
 export class AddComponent implements OnInit {
   address = Address;
   form: FormGroup = new FormGroup({});
-  usersList: inventoryResult[] = [];
+  usersList: InventoryResult[] = [];
 
   submitted = false;
 
-  constructor(private fb: FormBuilder, private service: storeService) {
+  constructor(
+    private fb: FormBuilder,
+    private service: storeService,
+    private auth: AuthService
+  ) {
     {
       this.form = fb.group({
         number: ['', [CustomValidator.numeric]],
@@ -41,14 +46,16 @@ export class AddComponent implements OnInit {
     this.form.get('price')?.setValue('');
     this.form.get('Adress')?.setValue('');
   }
-  submit(value: inventory) {
+  submit(value: Inventory) {
     this.submitted = true;
     if (this.form.invalid) {
       return;
     }
-    this.service.postData(this.form.value).subscribe((res) => {
-      console.log('წარმატებით გაიგზავნა');
-    });
+    this.service
+      .postData({ ...this.form.value, userId: this.auth.User?.id })
+      .subscribe((res) => {
+        console.log('წარმატებით გაიგზავნა');
+      });
   }
 
   ngOnInit() {

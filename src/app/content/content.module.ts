@@ -1,12 +1,11 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
-import { AddComponent } from './add/add.component';
-import { ListComponent } from './list/list.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { BrowserModule } from '@angular/platform-browser';
-import { UsersListComponent } from './users-list/users-list.component';
-import { MainComponent } from './main/main.component';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {RouterModule} from '@angular/router';
+import {AddComponent} from './add/add.component';
+import {ListComponent} from './list/list.component';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {BrowserModule} from '@angular/platform-browser';
+import {Ng2SearchPipeModule} from 'ng2-search-filter';
 
 @NgModule({
   imports: [
@@ -16,13 +15,9 @@ import { MainComponent } from './main/main.component';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
+    Ng2SearchPipeModule,
   ],
-  declarations: [
-    AddComponent,
-    ListComponent,
-    UsersListComponent,
-    MainComponent,
-  ],
+  declarations: [AddComponent, ListComponent],
   providers: [],
 })
 export class ContentModule {}
