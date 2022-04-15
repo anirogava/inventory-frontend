@@ -2,8 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Address, Inventory} from '../content.model';
 import {Pagination} from '../models/pageination';
 import {storeService} from '../services/store.service';
-import {ActivatedRoute, NavigationEnd, Router} from "@angular/router";
-import {filter, map} from "rxjs";
+import {ActivatedRoute, Router} from "@angular/router";
 
 const EMPTY = 'სია ცარიელია.';
 
@@ -36,9 +35,9 @@ export class ListComponent implements OnInit {
   ) {
   }
 
-  deleteInventory(inventory: Inventory) {
-    this.service.remove(inventory.id).subscribe((res) => {
-      console.log();
+  deleteInventory(id: number) {
+    this.service.remove(id).subscribe((res) => {
+      console.log(res);
     });
   }
 
@@ -48,12 +47,13 @@ export class ListComponent implements OnInit {
       .subscribe(res => {
         this.inventoryList = res.items;
         this.pagination.count = res.count;
-        this.pagination.pages = res.count / this.pagination.limit;
+        this.pagination.pages = Math.round(res.count / this.pagination.limit);
       });
   }
 
   counter(i: number) {
     return new Array(i)
+
   }
 
   ngOnInit() {
@@ -63,7 +63,7 @@ export class ListComponent implements OnInit {
   }
 
   changePage(page: number) {
-    if(this.pagination.page == page){
+    if (this.pagination.page == page) {
       return
     }
     this.pagination.page = page
@@ -72,8 +72,9 @@ export class ListComponent implements OnInit {
     this.router.navigate(
       ['/list'],
       {
-        queryParams: { page },
-        queryParamsHandling: 'merge' }
+        queryParams: {page},
+        queryParamsHandling: 'merge'
+      }
     ).then();
   }
 }
