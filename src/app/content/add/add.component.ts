@@ -52,7 +52,7 @@ export class AddComponent implements OnInit {
       return;
     }
     this.service
-      .postData({ ...this.form.value, userId: this.auth.User?.id })
+      .postData({ ...this.form.value, userId: this.auth.user?.id })
       .subscribe((res) => {
         console.log('წარმატებით გაიგზავნა');
       });

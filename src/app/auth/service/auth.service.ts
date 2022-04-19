@@ -9,6 +9,7 @@ export function initializeAppFactory(provider: AuthService): () => void {
 }
 interface User {
   id: string | null | undefined;
+  userId: string;
   email: string | null | undefined;
   password: string;
   firstName: string;
@@ -21,7 +22,7 @@ interface User {
 export class AuthService {
   private _user: User | null = null;
 
-  get User(): User | null {
+  get user(): User | null {
     return this._user;
   }
   get isLoggedIn(): boolean {
